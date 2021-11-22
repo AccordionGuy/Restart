@@ -13,43 +13,53 @@ struct HomeView: View {
   @AppStorage("onboarding") var isOnboardingViewActive = false
   
   var body: some View {
-    VStack(spacing: 20) {
-      // MARK: Header
+    ZStack {
+      Color("ColorRed")
+        .ignoresSafeArea(.all, edges: .all)
       
-      Spacer()
-      
-      Image("character-2")
-        .resizable()
-        .scaledToFit()
-        .padding()
-      
-      // MARK: Center
-      
-      Text("The time that leads to mastery is dependent on the intensity of our focus.")
-        .font(.title3)
-        .fontWeight(.light)
-        .foregroundColor(.secondary)
-        .multilineTextAlignment(.center)
-        .padding()
-      
-      // Mark: Footer
-      
-      Spacer()
-      
-      Button(action: {
-        isOnboardingViewActive = true
-      }) {
-        Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
-          .imageScale(.large)
+      VStack(spacing: 20) {
         
-        Text("Restart")
-          .font(.system(.title3, design: .rounded))
-          .fontWeight(.bold)
-      } // Button
-      .buttonStyle(.borderedProminent)
-      .buttonBorderShape(.capsule)
-      .controlSize(.large)
-      
+        // MARK: Header
+        
+        Spacer()
+        
+        Image("joey-and-accordion")
+          .resizable()
+          .scaledToFit()
+          .padding()
+        
+        // MARK: Center
+        
+        Text("""
+        Joey deVilla
+        works like Harold
+        and plays like Kumar.
+        """)
+          .font(.title3)
+          .fontWeight(.light)
+          .foregroundColor(.white)
+          .multilineTextAlignment(.center)
+          .padding(.horizontal, 10)
+        
+        // Mark: Footer
+        
+        Spacer()
+        
+        Button(action: {
+          isOnboardingViewActive = true
+        }) {
+          Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+            .imageScale(.large)
+          
+          Text("Restart")
+            .font(.system(.title3, design: .rounded))
+            .fontWeight(.bold)
+        } // Button
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
+        .controlSize(.large)
+        
+      }
     } // VStack
   }
 

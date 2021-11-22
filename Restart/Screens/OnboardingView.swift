@@ -29,14 +29,14 @@ struct OnboardingView: View {
         Spacer()
         
         VStack(spacing: 0) {
-          Text("Share.")
+          Text("Accordion!")
             .font(.system(size: 60))
             .fontWeight(.heavy)
             .foregroundColor(.white)
           
           Text("""
-          It’s not how much love we give but
-          how much love we put into giving.
+          Ain’t no party like
+          an accordion party!
           """)
             .font(.title3)
             .fontWeight(.light)
@@ -57,9 +57,10 @@ struct OnboardingView: View {
               .frame(width: 260, height: 260, alignment: .center)
           } // ZStack
           
-          Image("character-1")
+          Image("black-accordion")
             .resizable()
             .scaledToFit()
+            .padding(25)
         } // ZStack (Center)
         
         Spacer()
@@ -80,7 +81,7 @@ struct OnboardingView: View {
           
           // 2. Call to action (static)
           
-          Text("Get started")
+          Text("Let’s rock!")
             .font(.system(.title3, design: .rounded))
             .fontWeight(.bold)
             .foregroundColor(.white)
