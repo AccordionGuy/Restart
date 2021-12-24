@@ -11,6 +11,7 @@ struct HomeView: View {
   
   // MARK: Property
   @AppStorage("onboarding") var isOnboardingViewActive = false
+  @State private var isAnimating = false
   
   var body: some View {
     ZStack {
@@ -29,7 +30,13 @@ struct HomeView: View {
           Image("joey-and-accordion")
             .resizable()
             .scaledToFit()
-          .padding()
+            .padding()
+            .offset(y: isAnimating ? 35 : -35)
+            .animation(
+              .easeInOut(duration: 4)
+                .repeatForever()
+              , value: isAnimating
+            )
         }
         
         // MARK: Center
@@ -50,7 +57,10 @@ struct HomeView: View {
         Spacer()
         
         Button(action: {
-          isOnboardingViewActive = true
+          withAnimation {
+            playSound(sound: "success", type: "m4a")
+            isOnboardingViewActive = true
+          }
         }) {
           Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
             .imageScale(.large)
@@ -65,6 +75,12 @@ struct HomeView: View {
         
       }
     } // VStack
+    .onAppear(perform: {
+      // Start bobbing the photo a half-second after the page appears
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        isAnimating = true
+      })
+    })
   }
 
 }
