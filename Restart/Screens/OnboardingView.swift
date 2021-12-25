@@ -30,14 +30,27 @@ struct OnboardingView: View {
   
   var body: some View {
     ZStack {
+      // From bottom to top, the layers of this ZStack are:
+      //
+      // 1. A `Color` view for the background
+      // 2. A `VStack` view for the subviews
+      
       Color("ColorBlue")
         .ignoresSafeArea(.all, edges: .all)
       
       VStack(spacing: 20) {
-        // MARK: Header
+        // This view contains all the subviews.
+        // From top to bottom, they are:
+        //
+        // 1. A spacer to provide some distance between the top of the screen
+        //    and the top of the content
+        // 2. The header: A headline and subhead
+        // 3. The center: A background “halo” and an accordion image
+        // 4.
         
         Spacer()
-        
+
+        // MARK: Header
         VStack(spacing: 0) {
           Text(textTitle)
             .font(.system(size: 60))
@@ -75,7 +88,8 @@ struct OnboardingView: View {
         // - The animation should take 1 second to occur
         // - It’s an “ease out” animation, which means it doesn’t
         //   happen at a constant rate, but slows down at the end
-        // - It happens only if `isAnimating()` is `true`
+        // - It applies the animation whenever the value of `isAnimating`
+        //   changes
         .opacity(isAnimating ? 1 : 0)
         .offset(y: isAnimating ? 0 : -200)
         .animation(.easeOut(duration: 1), value: isAnimating)
@@ -106,7 +120,8 @@ struct OnboardingView: View {
             // - The animation should take 2 seconds to occur
             // - It’s an “ease out” animation, which means it doesn’t
             //   happen at a constant rate, but slows down at the end
-            // - It happens only if `isAnimating()` is `true`
+            // - It applies the animation whenever the value of `isAnimating`
+            //   changes
             .opacity(isAnimating ? 1 : 0)
             .rotationEffect(isAnimating ? Angle(degrees: 0) : Angle(degrees: 180))
             .animation(.easeOut(duration: 2.0), value: isAnimating)
